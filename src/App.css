@@ -6,16 +6,6 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
-/* .navi {
-  
-  background-color: rgba(255, 255, 255, 0.371);
-  color: rgb(0, 0, 0);
-  width: 15%;
-  padding-left: 20px;
-  position: fixed;
-  border-radius: 0 0 15px 15px;
-  
-} */
 
 .slideContainer {
   overflow: auto;
@@ -163,9 +153,9 @@ body {
 
 
 
-/* .me-auto {
-  
-} */
+.me-auto {
+  z-index: 100;
+}
 
 .MC_logo {
   height: 70px;

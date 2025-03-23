@@ -3,48 +3,101 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Routes, Route } from 'react-router-dom';
+import "./Timeline.css";
+
 
 function App() {
   return (
     <div className="App">
-
-
-
       <header>
-        {/* <div className="navi">
-          <h4>MC</h4>
-        </div>
-        <div className="classButton">
-          <a href="#">질문</a>
-          <a href="#">수업 내용</a>
-          <a href="#">프로젝트</a>
-        </div> */}
         <Navbar bg="dark" data-bs-theme="dark" className="navi">
           <Container>
-            <Navbar.Brand href="#home"><div className="MC_logo"></div></Navbar.Brand>
+            <Navbar.Brand href="/"><div className="MC_logo"></div></Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link href="#home">질문</Nav.Link>
-              <Nav.Link href="#features">수업 내용</Nav.Link>
-              <Nav.Link href="#pricing">프로젝트</Nav.Link>
-              <Nav.Link href="#prfile">프로필</Nav.Link>
+              <Nav.Link href="/">홈</Nav.Link>
+              <Nav.Link href='/question'>질문</Nav.Link>
+              <Nav.Link href="/timeLine">수업 내용</Nav.Link>
+              <Nav.Link href="/project">프로젝트</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
       </header>
 
-      <SlideNavigation />
-      {/* <div className="move_section">
-        <div className="section_controller">
-          <a href="#slide_1"><div className="move_bar1 move_bar"></div></a>
-          <a href="#slide_2"><div className="move_bar2 move_bar"></div></a>
-          <a href="#slide_3"><div className="move_bar3 move_bar"></div></a>
-        </div>
-      </div> */}
 
-      <SlideContainer />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <SlideNavigation />
+            <SlideContainer />
+          </>
+        } />
+        <Route path='/timeLine' element={
+          <>
+            <TimeLine />
+          </>
+        } />
+      </Routes>
 
     </div>
   );
+}
+
+
+function TimeLine() {
+  const timelineData = [
+    { week: "1주차", title: "OT.git", iconClass: "fa-brands fa-git", description: "동아리 계획 안내 및 Git 사용법 강의" },
+    { week: "2주차", title: "Java 기본", iconClass: "fa-brands fa-java", description: "자바 기본 문법을 익히고 실습합니다." },
+    { week: "3주차", title: "C 프로그래밍", iconClass: "fa-brands fa-c", description: "C 언어의 기초를 배우고 실습합니다." },
+    { week: "4주차", title: "알고리즘 기초", iconClass: "fa-solid fa-scroll", description: "기본적인 알고리즘과 문제 해결 방법을 학습합니다." },
+    { week: "5주차", title: "자료구조", iconClass: "fa-solid fa-scroll", description: "스택, 큐, 리스트 등의 자료구조 개념을 익힙니다." },
+    { week: "7주차", title: "프레임워크 활용", iconClass: "fa-solid fa-scroll", description: "Spring과 같은 프레임워크를 사용해 프로젝트를 진행합니다." },
+    { week: "8주차", title: "프로젝트 발표", iconClass: "fa-solid fa-scroll", description: "각 팀의 프로젝트를 발표하고 피드백을 받습니다." },
+    { week: "2학기", title: "심화 학습", iconClass: "fa-solid fa-scroll", description: "고급 개발 기법 및 협업을 중심으로 학습합니다." }
+  ];
+  
+  const [visibleBoxes, setVisibleBoxes] = useState<boolean[]>([]);
+
+  
+    useEffect(() => {
+      const checkBoxes = () => {
+        const triggerBottom = window.innerHeight * 0.9;
+        const newVisibleBoxes = timelineData.map((_, index) => {
+          const box = document.getElementById(`box-${index}`);
+          if (box) {
+            const boxTop = box.getBoundingClientRect().top;
+            return boxTop < triggerBottom;
+          }
+          return false;
+        });
+  
+        setVisibleBoxes(newVisibleBoxes);
+      };
+  
+      checkBoxes(); // 페이지 로드 시 실행
+      window.addEventListener("scroll", checkBoxes);
+  
+      return () => window.removeEventListener("scroll", checkBoxes);
+    }, []);
+  
+    return (
+      <section id="timeline">
+        <h2 className="heading"></h2>
+        <ul>
+          {timelineData.map((item, index) => (
+            <li key={index}>
+              <i className={item.iconClass}></i>
+              <div id={`box-${index}`} className={`box ${visibleBoxes[index] ? "show" : ""}`}>
+                <h3 className="timeline-title">
+                  <span className="timeline-year">{item.week}</span> {item.title}
+                </h3>
+                <p>{item.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
 }
 
 function SlideContainer() {
@@ -100,7 +153,7 @@ function SlideContainer() {
         <div className="introduce intro1">
           <button className="rule" onClick={toggleIntro1}>MC 규칙</button>
           <span className={`intro_text ${isIntro1Visible ? "show" : ""}`}>
-            밥 꼭꼭 씹어서<br/>
+            밥 꼭꼭 씹어서<br />
             빨리 먹기
           </span>
         </div>
