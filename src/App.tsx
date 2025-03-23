@@ -97,7 +97,7 @@ function SlideContainer() {
             Meating for Competition <br /> 경쟁을 위한 모임
           </span>
         </h2>
-        <div className="introduce intro1" ref={setRef(10)}>
+        <div className="introduce intro1">
           <button className="rule" onClick={toggleIntro1}>MC 규칙</button>
           <span className={`intro_text ${isIntro1Visible ? "show" : ""}`}>
             밥 꼭꼭 씹어서<br/>
@@ -113,7 +113,7 @@ function SlideContainer() {
             선배들과 함께하는 <br /> 유익한 수업
           </span>
         </h2>
-        <div className="introduce intro2" ref={setRef(11)}>
+        <div className="introduce intro2">
           <p>우리가 하는 일</p>
           <p>실전 대비 – 대회 준비 및 문제 해결 능력 향상</p>
           <p>다양한 프로젝트 – 팀워크와 실전 개발 경험</p>
@@ -128,7 +128,7 @@ function SlideContainer() {
             다양한 프로젝트 <br /> 그리고 경험.
           </span>
         </h2>
-        <div className="introduce intro3" ref={setRef(12)}>
+        <div className="introduce intro3">
           <p>함께 도전하고 성장하는 Meating for Competition 바로 MC에서 여러분을 기다립니다!</p>
         </div>
       </div>
