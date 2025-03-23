@@ -94,7 +94,7 @@ function SlideContainer() {
         <div className="line" ref={setRef(4)}></div>
         <h2 className="title_content_right">
           <span className="letter" ref={setRef(0)}>
-            Meating for Competition <br /> 경쟁을 위한 모임
+            Meeting for Competition <br /> 경쟁을 위한 모임
           </span>
         </h2>
         <div className="introduce intro1">
@@ -129,7 +129,7 @@ function SlideContainer() {
           </span>
         </h2>
         <div className="introduce intro3">
-          <p>함께 도전하고 성장하는 Meating for Competition 바로 MC에서 여러분을 기다립니다!</p>
+          <p>함께 도전하고 성장하는 Meeting for Competition 바로 MC에서 여러분을 기다립니다!</p>
         </div>
       </div>
     </div>
