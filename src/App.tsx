@@ -55,10 +55,10 @@ function TimeLine() {
     { week: "8주차", title: "프로젝트 발표", iconClass: "fa-solid fa-scroll", description: "각 팀의 프로젝트를 발표하고 피드백을 받습니다." },
     { week: "2학기", title: "심화 학습", iconClass: "fa-solid fa-scroll", description: "고급 개발 기법 및 협업을 중심으로 학습합니다." }
   ];
-  
+
   const [visibleBoxes, setVisibleBoxes] = useState<boolean[]>([]);
 
-  
+
     useEffect(() => {
       const checkBoxes = () => {
         const triggerBottom = window.innerHeight * 0.9;
@@ -70,16 +70,16 @@ function TimeLine() {
           }
           return false;
         });
-  
+
         setVisibleBoxes(newVisibleBoxes);
       };
-  
+
       checkBoxes(); // 페이지 로드 시 실행
       window.addEventListener("scroll", checkBoxes);
-  
+
       return () => window.removeEventListener("scroll", checkBoxes);
     }, []);
-  
+
     return (
       <section id="timeline">
         <h2 className="heading"></h2>
